@@ -10,7 +10,6 @@ public class poker_bluffing{
         player=player+community;
         deck.remove(player);
         rank players=new rank(player);
-        System.out.println(players.getrank());
 	}
 	
 	public static String playercard() {

@@ -25,7 +25,6 @@ public class rank {
 
 	public rank(String s) {
 		putcard(s);
-		
 		straightflush(this.card);
 		fourofakind(this.card);
 		straightflushwheel(this.card);
@@ -166,7 +165,6 @@ public class rank {
 				}
 			}
     	}
-    	System.out.println(map.toString());
     }
     public void straightwheel(HashSet<String> card) {
     	if (card.contains("Ac")||card.contains("Ad")||card.contains("Ah")||card.contains("As")) {

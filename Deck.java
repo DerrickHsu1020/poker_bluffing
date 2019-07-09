@@ -1,8 +1,9 @@
 package poker_blufffing;
+import java.util.ArrayList;
 import java.util.HashSet;
 public class Deck {
 	private HashSet<String> deck = new HashSet<>();
-		
+	private static String colour[] = {"s", "h", "d", "c"};
 	public Deck(){
 			deck.add("As"); deck.add("Ac"); deck.add("Ad"); deck.add("Ah"); 
 			deck.add("Ks"); deck.add("Kc"); deck.add("Kd"); deck.add("Kh");
@@ -34,5 +35,87 @@ public class Deck {
 	}
 	public String getdeck() {
 		return deck.toString();
+	}
+	
+	public double bluffing(ArrayList <String> range, String community) {
+		int bluffing=0;
+		int total=0;
+		ArrayList <String> totalrange;
+		rank com=new rank(community);
+		for (int i=0;i<range.size();i++) {
+			String s = range.get(i);
+			if (s.charAt(0)==s.charAt(1)) {
+				char c=s.charAt(0);
+				ArrayList <String> combination = new ArrayList<>();
+				for (int j=0;j<colour.length;j++) {
+					String card=c+colour[j];
+					if (deck.contains(card)) {
+						combination.add(card);
+					}
+				}
+				if (combination.size()>1) {
+					for (int j=0;j<combination.size()-1;j++) {
+						for (int k=0;k<combination.size();k++) {
+							String hand=combination.get(j)+combination.get(k);
+							rank r=new rank(hand+community);
+							if (com.getrank()==r.getrank()&&com.getrank()<5) {
+								bluffing++;
+								total++;
+							}else {
+								total++;
+							}
+						}
+					}
+				}
+			}else if(s.charAt(2)=='s') {
+				char c1=s.charAt(0);
+				char c2=s.charAt(1);
+				for (int j=0;j<colour.length;j++) {
+					String card =""+c1+colour[j];
+					String card2=""+c2+colour[j];
+					if (deck.contains(card)&&deck.contains(card2)) {
+						String hand=card+card2;
+						rank r=new rank(hand+community);
+						if (com.getrank()==r.getrank()&&com.getrank()<5) {
+							bluffing++;
+							total++;
+						}else {
+							total++;
+						}
+					}
+				}
+			}else if(s.charAt(2)=='o') {
+				char c1=s.charAt(0);
+				char c2=s.charAt(1);
+				ArrayList <String> combination = new ArrayList<>();
+				for (int j=0;j<colour.length;j++) {
+					String card =""+c1+colour[j];
+					String card2=""+c2+colour[j];
+					if (deck.contains(card)) 
+						combination.add(card);
+					if (deck.contains(card2))
+						combination.add(card2);
+				}
+				if (combination.size()>1) {
+					for (int j=0;j<combination.size()-1;j++) {
+						for (int k=0;k<combination.size();k++) {
+							String card=combination.get(j);
+							String card2=combination.get(k);
+							if (card.charAt(1)!=card2.charAt(1)) {
+								String hand=card+card2;
+								rank r=new rank(hand+community);
+								if (com.getrank()==r.getrank()&&com.getrank()<5) {
+									bluffing++;
+									total++;
+								}else {
+									total++;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return (double) bluffing*100/total;
 	}
 }
