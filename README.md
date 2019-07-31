@@ -7,21 +7,21 @@ Execute Pokerbluffing.java to launch the software.
 
 1. The format for the user's cards:
 
-Ac Ks
-2h 8d
+    Ac Ks
+    2h 8d
 
-The first character is the value of the card
-The second character represent the suit of the card.
+    The first character is the value of the card
+    The second character represent the suit of the card.
 
 2. For the community cards:
 
-The user can type five community cards for bluffing calculation
+    The user can type five community cards for bluffing calculation
 
-As 8d 7d 9s 3c
+    As 8d 7d 9s 3c
 
 3. Select the range prediction of the opponent
 
-Click the button on the central to manipulate.
+    Click the button on the central to manipulate.
 
 4. Click the ENTER button
 
