@@ -40,7 +40,6 @@ public class Deck {
 	public double bluffing(ArrayList <String> range, String community) {
 		int bluffing=0;
 		int total=0;
-		ArrayList <String> totalrange;
 		rank com=new rank(community);
 		for (int i=0;i<range.size();i++) {
 			String s = range.get(i);
@@ -58,7 +57,7 @@ public class Deck {
 						for (int k=0;k<combination.size();k++) {
 							String hand=combination.get(j)+combination.get(k);
 							rank r=new rank(hand+community);
-							if (com.getrank()==r.getrank()&&com.getrank()<5) {
+							if (com.getrank()==r.getrank()) {
 								bluffing++;
 								total++;
 							}else {
@@ -76,7 +75,7 @@ public class Deck {
 					if (deck.contains(card)&&deck.contains(card2)) {
 						String hand=card+card2;
 						rank r=new rank(hand+community);
-						if (com.getrank()==r.getrank()&&com.getrank()<5) {
+						if (com.getrank()==r.getrank()) {
 							bluffing++;
 							total++;
 						}else {
@@ -98,13 +97,15 @@ public class Deck {
 				}
 				if (combination.size()>1) {
 					for (int j=0;j<combination.size()-1;j++) {
-						for (int k=0;k<combination.size();k++) {
+						for (int k=j+1;k<combination.size();k++) {
 							String card=combination.get(j);
 							String card2=combination.get(k);
-							if (card.charAt(1)!=card2.charAt(1)) {
+							if (card.charAt(1)!=card2.charAt(1)&&card.charAt(0)!=card2.charAt(0)) {
 								String hand=card+card2;
+								System.out.println(hand);
 								rank r=new rank(hand+community);
-								if (com.getrank()==r.getrank()&&com.getrank()<5) {
+								System.out.println(r.getrank());
+								if (com.getrank()==r.getrank()) {
 									bluffing++;
 									total++;
 								}else {
