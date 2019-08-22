@@ -169,7 +169,6 @@ public class Pokerbluffing {
 		  enter.setFont(font1);
 		  enter.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent arg0) {
-					//returns();
 					Deck deck=new Deck();
 					String playercard=player.getText();
 					String community =board.getText();
@@ -180,17 +179,6 @@ public class Pokerbluffing {
 			  }
 		  });
 		  bottom.add(enter);
-	}
-	public void returns() {
-		Deck deck=new Deck();
-		String playercard =player.getText();
-		String community =board.getText();
-		System.out.println(playercard);
-		System.out.println(community);
-		deck.remove(playercard);
-		deck.remove(community);
-		double answer=deck.bluffing(s, community);
-		
 	}
 }
 
